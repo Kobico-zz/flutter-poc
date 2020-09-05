@@ -5,10 +5,16 @@
     <title>Flutter communication POC</title>
 </head>
 <body>
+    <h1>Counter is: <span id="counter"></span></h1>
+    <button id="reset">Reset</button>
     <script>
         window.addEventListener('message', e => {
             console.log(e);
-        }, false)
+            document.getElementById('counter').innerText = e.data;
+        }, false);
+        document.getElementById('reset').addEventListener('click', () => {
+            window.frames[0].postMessage('reset', '*');
+        });
     </script>
     <iframe src="https://kobico.github.io/flutter-frames/web"></iframe>
 </body>
